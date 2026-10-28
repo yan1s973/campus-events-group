@@ -5,7 +5,15 @@ def peut_inscrire(inscrits: int, capacite: int) -> bool:
     return inscrits <= capacite
 
 def places_restantes(inscrits: int, capacite: int) -> int:
-    """Calcule les places disponibles."""
+    """Calcule les places disponibles.
+
+    Domaine valide : capacite >= 0 et 0 <= inscrits <= capacite.
+    Leve ValueError pour toute entree hors de ce domaine, sans corriger
+    ni ramener la valeur a zero. Une capacite nulle avec zero inscrit
+    est valide et donne 0 place.
+    """
+    if capacite < 0 or inscrits < 0 or inscrits > capacite:
+        raise ValueError("inscrits et capacite doivent verifier 0 <= inscrits <= capacite")
     return capacite - inscrits
 
 def normaliser_nom(nom: str) -> str:
